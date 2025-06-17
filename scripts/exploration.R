@@ -49,6 +49,22 @@ ggplot(donnees_sopk, aes(x = factor(`Skin darkening (Y/N)`), fill = factor(`PCOS
        fill = "SOPK") +
   theme_minimal()
 
+ggplot(donnees_sopk, aes(x = factor(`Weight gain(Y/N)`), fill = factor(`PCOS (Y/N)`))) +
+  geom_bar(position = "dodge") +
+  labs(title = "Gain de poids selon SOPK",
+       x = "Gain de poids (0=Non, 1=Oui)",
+       y = "Nombre de patientes",
+       fill = "SOPK") +
+  theme_minimal()
+
+ggplot(donnees_sopk, aes(x = factor(`Fast food (Y/N)`), fill = factor(`PCOS (Y/N)`))) +
+  geom_bar(position = "dodge") +
+  labs(title = "Consommation de fast food selon SOPK",
+       x = "Fast food (0=Non, 1=Oui)",
+       y = "Nombre de patientes",
+       fill = "SOPK") +
+  theme_minimal()
+
 donnees_numeriques <- donnees_sopk %>%
   select(-`Sl. No`, -`Patient File No.`) %>%
   select(where(is.numeric))
