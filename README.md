@@ -15,6 +15,8 @@ analyse.R # Tests statistiques (khi² et t)
 
 resultats/
 graphiques/ # Graphiques exportés
+LH.jpeg
+IMC.jpeg
 pigment peau.jpeg
 gain poids.jpeg
 fast food.jpeg
