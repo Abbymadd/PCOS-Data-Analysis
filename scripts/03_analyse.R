@@ -51,20 +51,19 @@ ggplot(top_vars, aes(x = reorder(Variable, Correlation), y = Correlation)) +
   theme_minimal()
 
 # Tests du Khi2
-# Gain de poids
-chisq.test(table(donnees_sopk$`Weight gain(Y/N)`, donnees_sopk$`PCOS (Y/N)`))
+vars_qualitatives <- c(
+  "Weight gain(Y/N)",
+  "Fast food (Y/N)",
+  "Skin darkening (Y/N)",
+  "hair growth(Y/N)",
+  "Pimples(Y/N)"
+)
 
-# Consommation de fast food
-chisq.test(table(donnees_sopk$`Fast food (Y/N)`, donnees_sopk$`PCOS (Y/N)`))
-
-# Pigmentation de la peau
-chisq.test(table(donnees_sopk$`Skin darkening (Y/N)`, donnees_sopk$`PCOS (Y/N)`))
-
-# Pilosité
-chisq.test(table(donnees_sopk$`hair growth(Y/N)`, donnees_sopk$`PCOS (Y/N)`))
-
-# Acné
-chisq.test(table(donnees_sopk$`Pimples(Y/N)`, donnees_sopk$`PCOS (Y/N)`))
+for (var in vars_qualitatives) {
+  cat("\nTest du khi² :", var, "vs SOPK\n")
+  table_var <- table(donnees_sopk[[var]], donnees_sopk$`PCOS (Y/N)`)
+  print(chisq.test(table_var))
+}
 
 # Tester sur les résidus de chaque groupe pour BMI et AMH
 # Groupe non PCOS
@@ -109,17 +108,8 @@ ggplot(donnees_sopk, aes(x = `LH(mIU/mL)`, y = `FSH(mIU/mL)`, color = factor(`PC
   theme_minimal()
 
 # Tests T
-# Test t pour BMI
-t.test(BMI ~ `PCOS (Y/N)`, data = donnees_sopk)
-
-# Test t pour follicule gauche
-t.test(`Follicle No. (L)` ~ `PCOS (Y/N)`, data = donnees_sopk)
-
-# Test t pour follicule droite 
-t.test(`Follicle No. (R)` ~ `PCOS (Y/N)`, data = donnees_sopk)
-
-# Test t pour AMH
-t.test(`AMH(ng/mL)` ~ `PCOS (Y/N)`, data = donnees_sopk)
-
-# Test t pour poids 
-t.test(`Weight (Kg)` ~ `PCOS (Y/N)`, data = donnees_sopk)
+vars <- c("BMI", "Weight (Kg)", "AMH(ng/mL)", "Follicle No. (L)", "Follicle No. (R)")
+for (v in vars) {
+  print(v)
+  print(t.test(donnees_sopk[[v]] ~ donnees_sopk$`PCOS (Y/N)`))
+}
