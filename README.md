@@ -49,7 +49,7 @@ Les données proviennent d’un jeu de données Kaggle : [https://www.kaggle.com
   - Barplot : Top 10 des variables les plus corrélées avec le SOPK
  
 ### Analyses
-- Tests de normalité shapiro et d'homogénéité des variances levene
-- Tests du **khi²** pour les variables qualitatives les plus liées au SOPK
+- **Tests de normalité** shapiro et **d'homogénéité des variances** levene
+- **Tests du khi²** pour les variables qualitatives les plus liées au SOPK
 - **Tests t de Student** pour comparer les moyennes entre patientes
 - Calcul des corrélations (Pearson) avec la variable cible PCOS (Y/N)
