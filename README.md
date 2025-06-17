@@ -34,9 +34,9 @@ Les données proviennent d’un jeu de données Kaggle : [https://www.kaggle.com
 
 ## Étapes réalisées 
 ### Nettoyage
-- Conversion des colonnes erronées (`AMH`, `beta-HCG`) en numériques
+- Conversion des colonnes erronées (AMH, beta-HCG) en numériques
 - Suppression des valeurs manquantes
-- Conversion de certaines variables en facteur (`Blood Group`, `Cycle(R/I)`)
+- Conversion de certaines variables en facteur (Blood Group, Cycle(R/I))
 
 ### Exploration
 - Résumé statistique par groupe (SOPK vs non SOPK)
@@ -48,4 +48,4 @@ Les données proviennent d’un jeu de données Kaggle : [https://www.kaggle.com
 ### Analyses
 - Tests du **khi²** pour les variables qualitatives les plus liées au SOPK
 - Tests **t de Student** pour comparer les moyennes
-- Calcul des corrélations avec la variable cible `PCOS (Y/N)`
+- Calcul des corrélations avec la variable cible PCOS (Y/N)
