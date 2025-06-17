@@ -41,7 +41,7 @@ Les données proviennent d’un jeu de données Kaggle : [https://www.kaggle.com
 - Conversion de certaines variables en facteur (Blood Group, Cycle(R/I))
 
 ### Exploration
-- Statistiques descriptives par groupe (SOPK vs non SOPK)
+- Statistiques descriptives par groupe (SOPK vs non SOPK) incluant les moyennes et médianes
 - Visualisations :
   - Barplots : pigmentation, gain de poids, fast food
   - Diagrammes de dispersion : IMC vs follicules, LH vs FSH
