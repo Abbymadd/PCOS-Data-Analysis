@@ -3,6 +3,7 @@
 library(readxl)
 library(dplyr)
 library(ggplot2)
+library(car)
 
 # Importer les données nettoyées
 donnees_sopk <- read_excel("data/PCOS_data_without_infertility.xlsx")
@@ -18,7 +19,7 @@ donnees_numeriques <- donnees_sopk %>%
   select(-`Sl. No`, -`Patient File No.`) %>%
   select(where(is.numeric))
 
-# Calculer la corrélation avec SOPK pour toutes les autres variables
+# Calculer la corrélation avec SOPK pour toutes les variables
 correlations <- sapply(donnees_numeriques, function(var) {
   if (all(is.na(var))) return(NA)
   cor(donnees_sopk$`PCOS (Y/N)`, var, use = "complete.obs")
@@ -39,7 +40,6 @@ head(cor_df, 10)
 
 # Afficher le graphique
 top_vars <- head(cor_df, 10)
-
 ggplot(top_vars, aes(x = reorder(Variable, Correlation), y = Correlation)) +
   geom_bar(stat = "identity", fill = "orange") +
   coord_flip() +
@@ -65,6 +65,48 @@ chisq.test(table(donnees_sopk$`hair growth(Y/N)`, donnees_sopk$`PCOS (Y/N)`))
 
 # Acné
 chisq.test(table(donnees_sopk$`Pimples(Y/N)`, donnees_sopk$`PCOS (Y/N)`))
+
+# Tester sur les résidus de chaque groupe pour BMI et AMH
+# Groupe non PCOS
+shapiro.test(donnees_sopk$BMI[donnees_sopk$`PCOS (Y/N)` == 0])
+shapiro.test(donnees_sopk$`AMH(ng/mL)`[donnees_sopk$`PCOS (Y/N)` == 0])
+
+#Groupe PCOS
+shapiro.test(donnees_sopk$BMI[donnees_sopk$`PCOS (Y/N)` == 1])
+shapiro.test(donnees_sopk$`AMH(ng/mL)`[donnees_sopk$`PCOS (Y/N)` == 1])
+
+# Homogénéité des variances
+leveneTest(BMI ~ factor(`PCOS (Y/N)`), data = donnees_sopk)
+leveneTest(`AMH(ng/mL)` ~ factor(`PCOS (Y/N)`), data = donnees_sopk)
+
+# Boîtes à moustaches
+ggplot(donnees_sopk, aes(x = factor(`PCOS (Y/N)`), y = BMI)) +
+  geom_boxplot(fill = "lightblue") +
+  labs(title = "Distribution de l'IMC selon SOPK", x = "SOPK", y = "IMC") +
+  theme_minimal()
+
+summary(donnees_sopk$`AMH(ng/mL)`)
+ggplot(donnees_sopk, aes(x = factor(`PCOS (Y/N)`), y = `AMH(ng/mL)`)) +
+  geom_boxplot(fill = "darkgreen") +
+  coord_cartesian(ylim = c(0, 35)) +
+  labs(title = "Distribution de l'AMH selon SOPK",
+       x = "SOPK", y = "AMH (ng/mL)") +
+  theme_minimal()
+
+# Diagrammes de dispersion
+summary(donnees_sopk$`LH(mIU/mL)`)
+summary(donnees_sopk$`FSH(mIU/mL)`)
+
+ggplot(donnees_sopk, aes(x = BMI, y = `Follicle No. (L)`, color = factor(`PCOS (Y/N)`))) +
+  geom_point(alpha = 0.6) +
+  labs(title = "BMI vs Nombre de follicules (gauche)", x = "IMC", y = "Follicules (L)", color = "SOPK") +
+  theme_minimal()
+
+ggplot(donnees_sopk, aes(x = `LH(mIU/mL)`, y = `FSH(mIU/mL)`, color = factor(`PCOS (Y/N)`))) +
+  geom_point(alpha = 0.6) +
+  labs(title = "LH vs FSH selon SOPK", x = "LH (mIU/mL)", y = "FSH (mIU/mL)", color = "SOPK") +
+  coord_cartesian(xlim = c(0, 20), ylim = c(0, 20)) + # j'ai ajusté pour pouvoir visualiser l'ensemble principal
+  theme_minimal()
 
 # Tests T
 # Test t pour BMI
