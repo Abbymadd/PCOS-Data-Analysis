@@ -60,9 +60,6 @@ chisq.test(table(donnees_sopk$`Fast food (Y/N)`, donnees_sopk$`PCOS (Y/N)`))
 # Pigmentation de la peau
 chisq.test(table(donnees_sopk$`Skin darkening (Y/N)`, donnees_sopk$`PCOS (Y/N)`))
 
-# Pimples
-chisq.test(table(donnees_sopk$`Pimples(Y/N)`, donnees_sopk$`PCOS (Y/N)`))
-
 # Pilosité
 chisq.test(table(donnees_sopk$`hair growth(Y/N)`, donnees_sopk$`PCOS (Y/N)`))
 
