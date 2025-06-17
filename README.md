@@ -15,11 +15,16 @@ analyse.R # Tests statistiques (khi² et t)
 
 resultats/
 graphiques/ # Graphiques exportés
+pigment peau.jpeg
+gain poids.jpeg
+fast food.jpeg
 heatmap.jpeg
-IMC.jpeg
-LH.jpeg
-top10 corr.jpeg
 correlation.jpeg
+top10 corr.jpeg
+distribution BMI.jpeg
+distribution AMH.jpeg
+BMI vs follicules.jpeg
+LH vs FSH.jpeg
 
 README.md
 
