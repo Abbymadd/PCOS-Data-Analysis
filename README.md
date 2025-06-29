@@ -9,9 +9,9 @@ data/
 PCOS_data_without_infertility.xlsx
 
 scripts/
-nettoyage.R # pour le nettoyage et la préparation des données
-exploration.R # pour l'analyse exploratoire et certaines visualisations
-analyse.R # pour les tests statistiques (khi², shapiro, levene et t)
+01_nettoyage.R # pour le nettoyage et la préparation des données
+02_exploration.R # pour l'analyse exploratoire et certaines visualisations
+03_analyse.R # pour les tests statistiques (khi², shapiro, levene et t)
 
 resultats/
 graphiques/ # Graphiques exportés
@@ -38,7 +38,7 @@ Les données proviennent d’un jeu de données Kaggle : [https://www.kaggle.com
 ### Nettoyage
 - Conversion des colonnes erronées (AMH, beta-HCG) en données numériques
 - Suppression des valeurs manquantes
-- Conversion de certaines variables en facteur (Blood Group, Cycle(R/I))
+- Conversion de certaines variables en format numérique (Blood Group, Cycle(R/I))
 
 ### Exploration
 - Statistiques descriptives par groupe (SOPK vs non SOPK) incluant les moyennes et médianes
