@@ -106,7 +106,7 @@ df_corr <- data.frame(
 # Exclure la variable PCOS
 df_corr <- df_corr[df_corr$Variable != "PCOS (Y/N)", ]
 ggplot(df_corr, aes(x = reorder(Variable, Correlation), y = Correlation)) +
-  geom_bar(stat = "identity", fill = "steelblue") +
+  geom_bar(stat = "identity", fill = "orange") +
   coord_flip() +
   labs(title = "Corrélation des variables avec le SOPK",
        x = "Variable",
