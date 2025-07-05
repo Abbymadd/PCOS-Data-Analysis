@@ -69,10 +69,16 @@ for (var in vars_qualitatives) {
 # Groupe non PCOS
 shapiro.test(donnees_sopk$BMI[donnees_sopk$`PCOS (Y/N)` == 0])
 shapiro.test(donnees_sopk$`AMH(ng/mL)`[donnees_sopk$`PCOS (Y/N)` == 0])
+shapiro.test(donnees_sopk$`Weight (Kg)`[donnees_sopk$`PCOS (Y/N)`==0])
+shapiro.test(donnees_sopk$`Follicle No. (L)`[donnees_sopk$`PCOS (Y/N)`==0])
+shapiro.test(donnees_sopk$`Follicle No. (R)`[donnees_sopk$`PCOS (Y/N)`==0])
 
 #Groupe PCOS
 shapiro.test(donnees_sopk$BMI[donnees_sopk$`PCOS (Y/N)` == 1])
 shapiro.test(donnees_sopk$`AMH(ng/mL)`[donnees_sopk$`PCOS (Y/N)` == 1])
+shapiro.test(donnees_sopk$`Weight (Kg)`[donnees_sopk$`PCOS (Y/N)`==1])
+shapiro.test(donnees_sopk$`Follicle No. (L)`[donnees_sopk$`PCOS (Y/N)`==1])
+shapiro.test(donnees_sopk$`Follicle No. (R)`[donnees_sopk$`PCOS (Y/N)`==1])
 
 # Homogénéité des variances
 leveneTest(BMI ~ factor(`PCOS (Y/N)`), data = donnees_sopk)
@@ -113,3 +119,19 @@ for (v in vars) {
   print(v)
   print(t.test(donnees_sopk[[v]] ~ donnees_sopk$`PCOS (Y/N)`))
 }
+
+# Tests de Wilcoxon
+# BMI
+print(wilcox.test(BMI ~ `PCOS (Y/N)`, data=donnees_sopk))
+
+# AMH
+print(wilcox.test(`AMH(ng/mL)` ~ `PCOS (Y/N)`, data=donnees_sopk))
+
+# Poids
+print(wilcox.test(`Weight (Kg)` ~ `PCOS (Y/N)`, data=donnees_sopk))
+
+# Follicule gauche
+print(wilcox.test(`Follicle No. (L)` ~ `PCOS (Y/N)`, data=donnees_sopk))
+
+# Follicule droite
+print(wilcox.test(`Follicle No. (R)` ~ `PCOS (Y/N)`, data=donnees_sopk))
