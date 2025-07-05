@@ -52,4 +52,5 @@ Les données proviennent d’un jeu de données Kaggle : [https://www.kaggle.com
 - **Tests de normalité** shapiro et **d'homogénéité des variances** levene
 - **Tests du khi²** pour les variables qualitatives les plus liées au SOPK
 - **Tests t de Student** pour comparer les moyennes entre patientes
+- **Tests de Wilcoxon** pour confirmer que les différences observées n'étaient pas seulement liées aux valeurs aberrantes
 - Calcul des corrélations (Pearson) avec la variable cible PCOS (Y/N)
